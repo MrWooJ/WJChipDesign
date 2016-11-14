@@ -1,4 +1,5 @@
 var geneticAlgorithmConstructor = require('geneticalgorithm')
+var competitionModule = require('./CompetitionBModule')
 var mutationModule  = require('./MutationModule')
 var crossoverModule = require('./CrossoverModule')
 var fitnessModule   = require('./FitnessModule')
@@ -12,9 +13,11 @@ var firstPhenotype =
 
 var geneticAlgorithm = geneticAlgorithmConstructor({
   mutationFunction:   mutationModule.mutationFunction,
-  crossoverFunction: crossoverModule.crossoverFunction,
-  fitnessFunction: fitnessModule.fitnessFunction,
-  population: [ firstPhenotype ]
+  crossoverFunction:  crossoverModule.crossoverFunction,
+  doesABeatBFunction: competitionModule.competitionFunction,
+  fitnessFunction:    fitnessModule.fitnessFunction,
+  population: [ firstPhenotype ],
+  populationSize:     200
 });
 
 geneticAlgorithm.evolve()
