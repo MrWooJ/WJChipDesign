@@ -1,13 +1,22 @@
-var diskette = require('diskette')
+var fileIO  = require('rw')
+var path    = require('path')
 
 module.exports =
 {
-  readFromFile: function()
+  readFromFile: function(filename, callback)
   {
-    //read
+    fileIO.readFile(path.resolve(__dirname, filename), 'utf8', function(error, data) {
+      if (error)
+        throw error
+      callback(data)
+    })
   },
-  writeInFile: function()
+  writeInFile: function(filename, data, callback)
   {
-    //write
+    fileIO.readFile(path.resolve(__dirname, filename), data, 'utf8', function(error) {
+      if (error)
+        throw error
+      callback(data)
+    })
   }
-};
+}
