@@ -5,4 +5,4 @@ module.exports =
     // make a random change to phenotype
     return phenotype
   }
-};
+}

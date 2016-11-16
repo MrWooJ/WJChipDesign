@@ -18,4 +18,4 @@ module.exports =
     // else phenoTypeA beats phenoTypeB
     return true;
   }
-};
+}
