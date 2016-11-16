@@ -3,22 +3,22 @@ var competitionModule = require('./CompetitionBModule')
 var mutationModule  = require('./MutationModule')
 var crossoverModule = require('./CrossoverModule')
 var fitnessModule   = require('./FitnessModule')
-var fileIOModule    = require('./FileIOModule')
 
-var firstPhenotype =
+module.exports =
 {
-  dummyKey : "dummyValue"
-  // enter phenotype data here
+  startEngine: function(inputPopulation, callback)
+  {
+    var geneticAlgorithm = geneticAlgorithmConstructor({
+      mutationFunction:   mutationModule.mutationFunction,
+      crossoverFunction:  crossoverModule.crossoverFunction,
+      doesABeatBFunction: competitionModule.competitionFunction,
+      fitnessFunction:    fitnessModule.fitnessFunction,
+      population:         [ inputPopulation ],
+      populationSize:     inputPopulation.maximum
+    });
+
+    geneticAlgorithm.evolve()
+    var best = geneticAlgorithm.best()
+
+  }
 }
-
-var geneticAlgorithm = geneticAlgorithmConstructor({
-  mutationFunction:   mutationModule.mutationFunction,
-  crossoverFunction:  crossoverModule.crossoverFunction,
-  doesABeatBFunction: competitionModule.competitionFunction,
-  fitnessFunction:    fitnessModule.fitnessFunction,
-  population: [ firstPhenotype ],
-  populationSize:     200
-});
-
-geneticAlgorithm.evolve()
-var best = geneticAlgorithm.best()
