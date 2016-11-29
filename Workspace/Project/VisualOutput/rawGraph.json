@@ -1,0 +1,56 @@
+{
+  "boxSelectionEnabled": false,
+  "autounselectify": false,
+
+  "style": [
+    {
+      "selector": "node",
+      "css": {
+        "content": "data(id)",
+        "text-valign": "center",
+        "text-halign": "center"
+      }
+    },
+    {
+      "selector": "$node > node",
+      "css": {
+        "padding-top": "5px",
+        "padding-left": "5px",
+        "padding-bottom": "5px",
+        "padding-right": "5px",
+        "text-valign": "top",
+        "text-halign": "center",
+        "background-color": "#bbb"
+      }
+    },
+    {
+      "selector": "edge",
+      "css": {
+        "curve-style": "bezier"
+      }
+    },
+    {
+      "selector": ":selected",
+      "css": {
+        "background-color": "red",
+        "line-color": "blue",
+        "target-arrow-color": "yellow",
+        "source-arrow-color": "black"
+      }
+    }
+  ],
+
+  "elements": {
+    "nodes": [
+
+    ],
+    "edges": [
+
+    ]
+  },
+
+  "layout": {
+    "name": "preset",
+    "padding": 1
+  }
+}
