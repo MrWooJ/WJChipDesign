@@ -11,14 +11,31 @@ module.exports =
     var geneticAlgorithm = geneticAlgorithmConstructor({
       mutationFunction:   mutationModule.mutationFunction,
       crossoverFunction:  crossoverModule.crossoverFunction,
-      doesABeatBFunction: competitionModule.competitionFunction,
       fitnessFunction:    fitnessModule.fitnessFunction,
-      population:         [ inputPopulation ],
-      populationSize:     inputPopulation.maximum
-    });
+      population:         inputPopulation,
+      populationSize:     50
+    })
 
-    geneticAlgorithm.evolve()
-    var best = geneticAlgorithm.best()
+    for (var i = 0; i < inputPopulation.maximum; i++)
+      geneticAlgorithm.evolve()
 
+    var bestpheno = geneticAlgorithm.best()
+    var bestScore = geneticalgorithm.bestScore()
+    var scoredPopulation = geneticalgorithm.scoredPopulation()
+
+    var resGeneration = 0
+    for (var i = 0; i < scoredPopulation.length; i++)
+      if (scoredPopulation[i].score == bestScore && scoredPopulation[i].phenotype == bestpheno)
+      {
+        resGeneration = i
+        break
+      }
+
+    var result = {}
+    result.phenotype  = bestpheno
+    result.score      = bestScore
+    result.resGeneration  = resGeneration
+
+    callback(result)
   }
 }
