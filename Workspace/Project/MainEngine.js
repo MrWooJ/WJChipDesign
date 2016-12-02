@@ -1,5 +1,4 @@
 var geneticAlgorithmConstructor = require('geneticalgorithm')
-var competitionModule = require('./CompetitionBModule')
 var mutationModule  = require('./MutationModule')
 var crossoverModule = require('./CrossoverModule')
 var fitnessModule   = require('./FitnessModule')
@@ -16,21 +15,22 @@ module.exports =
       populationSize:     50
     })
 
-    for (var i = 0; i < inputPopulation.maximum; i++)
+    for (var i = 0; i < inputPopulation[0].maximum; i++)
       geneticAlgorithm.evolve()
 
     var bestpheno = geneticAlgorithm.best()
-    var bestScore = geneticalgorithm.bestScore()
-    var scoredPopulation = geneticalgorithm.scoredPopulation()
+    var bestScore = geneticAlgorithm.bestScore()
+    var scoredPopulation = geneticAlgorithm.scoredPopulation()
 
-    var resGeneration = 0
+    var resGeneration
     for (var i = 0; i < scoredPopulation.length; i++)
-      if (scoredPopulation[i].score == bestScore && scoredPopulation[i].phenotype == bestpheno)
+    {
+      if (scoredPopulation[i].score == bestScore)
       {
         resGeneration = i
         break
       }
-
+    }
     var result = {}
     result.phenotype  = bestpheno
     result.score      = bestScore
