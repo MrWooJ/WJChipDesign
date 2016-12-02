@@ -53,6 +53,7 @@ module.exports =
     var outputString = ''
     var firstSign = `${result.generationNumber}\n${result.intersectionCount}\n`
     var nmosTrans = ''
+    var pmosTrans = ''
     for (var i = 0; i < result.nmos; i++)
     {
       var direction = parseInt(result.nmosTransistors[i].ofSrc, 10)
