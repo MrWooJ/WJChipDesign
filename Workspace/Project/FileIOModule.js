@@ -13,10 +13,12 @@ module.exports =
   },
   writeInFile: function(filename, data, callback)
   {
-    fileIO.readFile(path.resolve(__dirname, filename), data, 'utf8', function(error) {
-      if (error)
-        throw error
-      callback(data)
+    this.readFromFile(path.resolve(__dirname, filename), function(result) {
+      result += data
+      fileIO.writeFile(path.resolve(__dirname, filename), result, function(error) {
+        if (error)
+          throw error
+      })
     })
   }
 }
