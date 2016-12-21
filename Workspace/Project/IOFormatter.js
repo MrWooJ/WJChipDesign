@@ -51,7 +51,7 @@ module.exports =
   prepareOutputText: function(result, callback)
   {
     var outputString = ''
-    var crossCounter = 100 - result.score
+    var crossCounter = 10000 - result.score
     var firstSign = `${result.resGeneration}\n${crossCounter}\n`
     var nmosTrans = ''
     var pmosTrans = ''

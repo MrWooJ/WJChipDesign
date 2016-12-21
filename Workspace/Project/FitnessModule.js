@@ -2,12 +2,7 @@ module.exports =
 {
   fitnessFunction: function(phenotype)
   {
-    for (var i = 0; i < 3; i++)
-    for (var j = i + 1; j < 3; j++)
-    if (phenotype.pmosTransistors[i].id == phenotype.pmosTransistors[j].id)
-      console.log(phenotype.pmosTransistors)
-
-    var score = 100
+    var score = 10000
     var crossCounter = 0
     var tempPheno = JSON.parse(JSON.stringify(phenotype))
     var transistors = []
@@ -28,7 +23,10 @@ module.exports =
         tempPheno.nmosTransistors[i].source.x = (i + 1) + 0.5
         tempPheno.nmosTransistors[i].source.y = 3.0
       }
+    }
 
+    for (var i = 0; i < tempPheno.pmos; i++)
+    {
       if (tempPheno.pmosTransistors[i].srcLeft)
       {
         tempPheno.pmosTransistors[i].source.x = i + 1.0
@@ -50,8 +48,6 @@ module.exports =
     for (var i = 0; i < tempPheno.pmos; i++)
       transistors.push(JSON.parse(JSON.stringify(tempPheno.pmosTransistors[i])))
 
-    // console.log(transistors)
-
     var lines = []
 
     for (var i = 0; i < transistors.length; i++)
@@ -62,7 +58,7 @@ module.exports =
         if (transistors[i].source.id == transistors[j].id) { desId = j; break; }
 
       if (desId == undefined)
-      console.log(transistors)
+        return 0
 
       if (transistors[i].source.ofSrc && !transistors[i].source.ck)
       {
@@ -91,7 +87,7 @@ module.exports =
         if (transistors[i].drain.id == transistors[j].id) { desId = j; break; }
 
       if (desId == undefined)
-      console.log(transistors)
+        return 0
 
       if (transistors[i].drain.ofSrc && !transistors[i].drain.ck)
       {
