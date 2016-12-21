@@ -2,6 +2,7 @@ var geneticAlgorithmConstructor = require('geneticalgorithm')
 var mutationModule  = require('./MutationModule')
 var crossoverModule = require('./CrossoverModule')
 var fitnessModule   = require('./FitnessModule')
+var utility = require('./utility')
 
 module.exports =
 {
@@ -12,7 +13,7 @@ module.exports =
       crossoverFunction:  crossoverModule.crossoverFunction,
       fitnessFunction:    fitnessModule.fitnessFunction,
       population:         inputPopulation,
-      populationSize:     50
+      populationSize:     100
     })
 
     for (var i = 0; i < inputPopulation[0].maximum; i++)
@@ -31,6 +32,7 @@ module.exports =
         break
       }
     }
+
     var result = {}
     result.phenotype  = bestpheno
     result.score      = bestScore
