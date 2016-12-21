@@ -2,61 +2,64 @@ module.exports =
 {
   crossoverFunction: function(phenotypeA, phenotypeB)
   {
-    var count = Math.floor((phenotypeA.nmos + phenotypeA.pmos)/2)
+    var cloneA = JSON.parse(JSON.stringify(phenotypeA))
+    var cloneB = JSON.parse(JSON.stringify(phenotypeB))
+
+    var choose = Math.floor((Math.random() * 10) + 1)
     var randNumb
     do {
-      randNumb = Math.floor(Math.random() * count * 2)
-    } while (randNumb == 0 || randNumb == ((count * 2) - 1))
+      randNumb = Math.floor((Math.random() * (phenotypeA.nmos)))
+    } while (randNumb == (phenotypeA.nmos - 1))
 
-    var A_nmosArray = phenotypeA.nmosTransistors
-    var A_pmosArray = phenotypeA.pmosTransistors
-    var B_nmosArray = phenotypeB.nmosTransistors
-    var B_pmosArray = phenotypeB.pmosTransistors
+    var A_nmosArray = JSON.parse(JSON.stringify(phenotypeA.nmosTransistors))
+    var A_pmosArray = JSON.parse(JSON.stringify(phenotypeA.pmosTransistors))
+    var B_nmosArray = JSON.parse(JSON.stringify(phenotypeB.nmosTransistors))
+    var B_pmosArray = JSON.parse(JSON.stringify(phenotypeB.pmosTransistors))
 
-    phenotypeA.nmosTransistors = []
-    phenotypeB.nmosTransistors = []
-    phenotypeA.pmosTransistors = []
-    phenotypeB.pmosTransistors = []
+    cloneA.nmosTransistors = []
+    cloneB.nmosTransistors = []
+    cloneA.pmosTransistors = []
+    cloneB.pmosTransistors = []
 
-    if (randNumb < count)
+    if (choose <= 5)
     {
       for (var i = 0; i < phenotypeA.nmos; i++)
       {
-        if (i < randNumb)
+        if (i <= randNumb)
         {
-          phenotypeA.nmosTransistors.push(A_nmosArray[i])
-          phenotypeB.nmosTransistors.push(B_nmosArray[i])
+          cloneA.nmosTransistors.push(A_nmosArray[i])
+          cloneB.nmosTransistors.push(B_nmosArray[i])
         }
         else
         {
-          phenotypeA.nmosTransistors.push(B_nmosArray[i])
-          phenotypeB.nmosTransistors.push(A_nmosArray[i])
+          cloneA.nmosTransistors.push(B_nmosArray[i])
+          cloneB.nmosTransistors.push(A_nmosArray[i])
         }
       }
 
-      phenotypeA.pmosTransistors = A_pmosArray
-      phenotypeB.pmosTransistors = B_pmosArray
+      cloneA.pmosTransistors = A_pmosArray
+      cloneB.pmosTransistors = B_pmosArray
     }
     else
     {
       for (var i = 0; i < phenotypeA.pmos; i++)
       {
-        if (i < (randNumb - count))
+        if (i <= randNumb)
         {
-          phenotypeA.pmosTransistors.push(A_pmosArray[i])
-          phenotypeB.pmosTransistors.push(B_pmosArray[i])
+          cloneA.pmosTransistors.push(A_pmosArray[i])
+          cloneB.pmosTransistors.push(B_pmosArray[i])
         }
         else
         {
-          phenotypeA.pmosTransistors.push(B_pmosArray[i])
-          phenotypeB.pmosTransistors.push(A_pmosArray[i])
+          cloneA.pmosTransistors.push(B_pmosArray[i])
+          cloneB.pmosTransistors.push(A_pmosArray[i])
         }
       }
 
-      phenotypeA.nmosTransistors = A_nmosArray
-      phenotypeB.nmosTransistors = B_nmosArray      
+      cloneA.nmosTransistors = A_nmosArray
+      cloneB.nmosTransistors = B_nmosArray
     }
 
-    return [ phenotypeA , phenotypeB ]
+    return [ cloneA , cloneB ]
   }
 }
