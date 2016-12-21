@@ -2,9 +2,9 @@ module.exports =
 {
   fitnessFunction: function(phenotype)
   {
-    var score = 10000
-    var crossCounter = 0
     var tempPheno = JSON.parse(JSON.stringify(phenotype))
+    var score = 100000
+    var crossCounter = 0
     var transistors = []
 
     for (var i = 0; i < tempPheno.nmos; i++)

@@ -14,10 +14,10 @@ module.exports =
       randNumb2 = Math.floor((Math.random() * (phenotypeA.pmos)))
     } while (randNumb2 == (phenotypeA.pmos - 1))
 
-    var A_nmosArray = JSON.parse(JSON.stringify(phenotypeA.nmosTransistors))
-    var A_pmosArray = JSON.parse(JSON.stringify(phenotypeA.pmosTransistors))
-    var B_nmosArray = JSON.parse(JSON.stringify(phenotypeB.nmosTransistors))
-    var B_pmosArray = JSON.parse(JSON.stringify(phenotypeB.pmosTransistors))
+    var A_nmosArray = JSON.parse(JSON.stringify(cloneA.nmosTransistors))
+    var A_pmosArray = JSON.parse(JSON.stringify(cloneA.pmosTransistors))
+    var B_nmosArray = JSON.parse(JSON.stringify(cloneB.nmosTransistors))
+    var B_pmosArray = JSON.parse(JSON.stringify(cloneB.pmosTransistors))
 
     cloneA.nmosTransistors = []
     cloneA.nmosTransistors.length = 0

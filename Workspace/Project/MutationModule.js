@@ -5,33 +5,34 @@ module.exports =
   mutationFunction: function(phenotype)
   {
     // make a random change to phenotype
+    var pheno = JSON.parse(JSON.stringify(phenotype))
     var choose = Math.floor((Math.random() * 10) + 1)
-    var randNumber1n = Math.floor((Math.random() * (phenotype.nmos)))
-    var randNumber1p = Math.floor((Math.random() * (phenotype.pmos)))
+    var randNumber1n = Math.floor((Math.random() * (pheno.nmos)))
+    var randNumber1p = Math.floor((Math.random() * (pheno.pmos)))
 
     if (randNumber1n == randNumber1p)
     {
       if (choose <= 5)
-        phenotype.nmosTransistors[randNumber1n].srcLeft = phenotype.nmosTransistors[randNumber1n].srcLeft ? false : true
+        pheno.nmosTransistors[randNumber1n].srcLeft = pheno.nmosTransistors[randNumber1n].srcLeft ? false : true
       else
-        phenotype.pmosTransistors[randNumber1p].srcLeft = phenotype.pmosTransistors[randNumber1p].srcLeft ? false : true
+        pheno.pmosTransistors[randNumber1p].srcLeft = pheno.pmosTransistors[randNumber1p].srcLeft ? false : true
     }
     else
     {
       if (choose <= 5)
       {
-        var element = phenotype.nmosTransistors[randNumber1n]
-        phenotype.nmosTransistors.push(element)
-        phenotype.nmosTransistors.splice(randNumber1n, 1)
+        var element = pheno.nmosTransistors[randNumber1n]
+        pheno.nmosTransistors.push(element)
+        pheno.nmosTransistors.splice(randNumber1n, 1)
       }
       else
       {
-        var element = phenotype.pmosTransistors[randNumber1p]
-        phenotype.pmosTransistors.push(element)
-        phenotype.pmosTransistors.splice(randNumber1p, 1)
+        var element = pheno.pmosTransistors[randNumber1p]
+        pheno.pmosTransistors.push(element)
+        pheno.pmosTransistors.splice(randNumber1p, 1)
       }
     }
 
-    return phenotype
+    return pheno
   }
 }
