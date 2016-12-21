@@ -3,51 +3,54 @@ module.exports =
   populationFunction: function(data)
   {
     var populationArray = []
-    var cloneData = {}
 
     // 1st population: Source First
-    cloneData = data
+    var cloneData1 = {}
+    cloneData1 = data
     for (var i = 0; i < data.nmosTransistors.length; i++)
-      cloneData.nmosTransistors[i].srcLeft = true
+      cloneData1.nmosTransistors[i].srcLeft = true
     for (var i = 0; i < data.pmosTransistors.length; i++)
-      cloneData.pmosTransistors[i].srcLeft = true
-    populationArray.push(cloneData)
+      cloneData1.pmosTransistors[i].srcLeft = true
+    populationArray.push(cloneData1)
 
     // 2nd population: One by One Source-Drain First
-    cloneData = data
+    var cloneData2 = {}
+    cloneData2 = data
     for (var i = 0; i < data.nmosTransistors.length; i++)
       if (i % 2 == 0)
-        cloneData.nmosTransistors[i].srcLeft = true
+        cloneData2.nmosTransistors[i].srcLeft = true
       else
-        cloneData.nmosTransistors[i].srcLeft = false
+        cloneData2.nmosTransistors[i].srcLeft = false
     for (var i = 0; i < data.pmosTransistors.length; i++)
       if (i % 2 == 0)
-        cloneData.pmosTransistors[i].srcLeft = true
+        cloneData2.pmosTransistors[i].srcLeft = true
       else
-        cloneData.pmosTransistors[i].srcLeft = false
-    populationArray.push(cloneData)
+        cloneData2.pmosTransistors[i].srcLeft = false
+    populationArray.push(cloneData2)
 
     // 3rd population: One by One Drain-Source First
-    cloneData = data
+    var cloneData3 = {}
+    cloneData3 = data
     for (var i = 0; i < data.nmosTransistors.length; i++)
       if (i % 2 == 0)
-        cloneData.nmosTransistors[i].srcLeft = false
+        cloneData3.nmosTransistors[i].srcLeft = false
       else
-        cloneData.nmosTransistors[i].srcLeft = true
+        cloneData3.nmosTransistors[i].srcLeft = true
     for (var i = 0; i < data.pmosTransistors.length; i++)
       if (i % 2 == 0)
-        cloneData.pmosTransistors[i].srcLeft = false
+        cloneData3.pmosTransistors[i].srcLeft = false
       else
-        cloneData.pmosTransistors[i].srcLeft = true
-    populationArray.push(cloneData)
+        cloneData3.pmosTransistors[i].srcLeft = true
+    populationArray.push(cloneData3)
 
     // 4th population: Rnadomized Source-Drain
-    cloneData = data
+    var cloneData4 = {}
+    cloneData4 = data
     for (var i = 0; i < data.nmosTransistors.length; i++)
-      cloneData.nmosTransistors[i].srcLeft = (Math.random() >= 0.5)
+      cloneData4.nmosTransistors[i].srcLeft = (Math.random() >= 0.5)
     for (var i = 0; i < data.pmosTransistors.length; i++)
-      cloneData.pmosTransistors[i].srcLeft = (Math.random() >= 0.5)
-    populationArray.push(cloneData)
+      cloneData4.pmosTransistors[i].srcLeft = (Math.random() >= 0.5)
+    populationArray.push(cloneData4)
 
     return populationArray
   }
