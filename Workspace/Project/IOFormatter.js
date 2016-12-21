@@ -51,20 +51,21 @@ module.exports =
   prepareOutputText: function(result, callback)
   {
     var outputString = ''
-    var firstSign = `${result.generationNumber}\n${result.intersectionCount}\n`
+    var crossCounter = 100 - result.score
+    var firstSign = `${result.resGeneration}\n${crossCounter}\n`
     var nmosTrans = ''
     var pmosTrans = ''
-    for (var i = 0; i < result.nmos; i++)
+    for (var i = 0; i < result.phenotype.nmosTransistors.length ; i++)
     {
-      var direction = parseInt(result.nmosTransistors[i].ofSrc, 10)
-      nmosTrans += `${result.nmosTransistors[i].id} ${direction}`
+      var direction = result.phenotype.nmosTransistors[i].srcLeft ? 0 : 1
+      nmosTrans += result.phenotype.nmosTransistors[i].id + ' ' + direction + ' '
     }
     nmosTrans += '\n'
 
-    for (var i = 0; i < result.pmos; i++)
+    for (var i = 0; i < result.phenotype.pmosTransistors.length; i++)
     {
-      var direction = parseInt(result.pmosTransistors[i].ofSrc, 10)
-      pmosTrans += `${result.pmosTransistors[i].id} ${direction}`
+      var direction = result.phenotype.pmosTransistors[i].srcLeft ? 0 : 1
+      pmosTrans += result.phenotype.pmosTransistors[i].id + ' ' + direction + ' '
     }
     pmosTrans += '\n'
 
