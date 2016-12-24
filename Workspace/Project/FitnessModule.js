@@ -116,7 +116,7 @@ module.exports =
     var crossCounter = 0
     for (var i = 0; i < lines.length; i++)
       for (var j = i + 1; j < lines.length; j++)
-        if (((lines[i].A * lines[j].B) - (lines[i].B * lines[j].A)) > 0)
+        if (((lines[i].A * lines[j].B) - (lines[i].B * lines[j].A)) != 0)
           crossCounter++
 
     return (score - crossCounter)
